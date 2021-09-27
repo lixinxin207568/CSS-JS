@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        .img-list{
+            width: 590px;
+            height: 470px;
+            list-style: none;
+            margin: 30px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .img-list li{
+            position: absolute;
+        }
+        .img-list li a{
+            display: block;  
+            line-height: 0; 
+        }
+        .img-list div{
+            position: absolute;
+            bottom: 40px;
+            left: 30px;
+            z-index: 999;
+        }
+        .img-list div a{
+            float: left;
+            margin-left: 20px;
+            width: 20px;
+            height: 20px;
+            background-clip: content-box;
+            border-radius: 50%;
+            background-color: rgb(134, 134, 134);
+            border: 4px solid transparent;
+        }
+        .img-list div a.active{
+            background-color: rgb(110, 110, 110);
+            border: 4px solid rgb(231, 205, 255);
+        }
+    </style>
+</head>
+<body>
+    <ul class="img-list">
+        <li><a href="javascript:;"><img src="./轮播.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="./轮播二.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="./轮播三.jpg" alt=""></a></li>
+        <div>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </ul>
+    <script>
+        var alist = document.querySelector('.img-list').lastElementChild.children;
+        var ilist = document.getElementsByTagName('li');
+        for(let i=0,length=alist.length;i<length;i++){
+            alist[i].index=i;
+            alist[i].addEventListener('mouseover',function(){
+                for(var i=0,length=alist.length;i<length;i++){
+                    alist[i].className='';
+                    ilist[i].style.zIndex=-1;
+                }
+                this.className ='active';
+                ilist[this.index].style.zIndex=4;
+            },false)
+        }
+    </script>
+</body>
+</html>
